@@ -1,0 +1,16 @@
+<%- include('../layouts/headerUser') %>
+<h4>Login</h4>
+      <form action="/users/login" method="post">
+        <div class="form-group">
+          <label for="name">User Name</label>
+          <input type="text" class="form-control" name="username" id="name" required>
+        </div>
+        <form action="/user" method="post">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" required>
+          </div>
+        <button type="submit" class="btn btn-primary">Login User</button>
+        <small><a href="/users/reset">Forgot Password</a></small>
+      </form>
+<%- include('../layouts/footer') %>

@@ -1,0 +1,20 @@
+[
+    {
+        "groupName":"userRead"
+    },
+    {
+        "groupName":"userWrite"
+    },
+    {
+        "groupName":"promoRead"
+    },
+    {
+        "groupName":"promoWrite"
+    },
+    {
+        "groupName":"commentWrite"
+    },
+    {
+        "groupName":"commentRead"
+    }
+]

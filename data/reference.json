@@ -1,0 +1,46 @@
+[
+    {
+    "_id": "53c2ae8528d75d572c06ad9d",
+    "title": "Cake Large",
+    "pcode": "1930110111",
+    "publishedDate":  "2001-05-01T00:00:00.000-0700",
+    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ducharme.jpg",
+    "longDescription": "Cake with large and rounded corners",
+    "status": "PUBLISH",
+    "departement": "Bakery",
+    "dCode":"FB"
+},
+{
+    "_id": "53c2ae8528d75d572c06ad9e",
+    "title": "Cake Large Al",
+    "pcode": "1930110286",
+    "publishedDate":"2002-03-01T00:00:00.000-0800",
+    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/eebrown.jpg",
+    "longDescription": "Medium Cake with ingredients",
+    "status": "PUBLISH",
+    "departement": "Bakery",
+    "dCode": "FB"
+},
+{
+    "_id": "53c2ae8528d75d572c06ad9f",
+    "title": "Peaches",
+    "pcode": "1932394656",
+    "publishedDate":"2006-04-01T00:00:00.000-0800",
+    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/eebrown2.jpg",
+    "longDescription": "Peaches from Farm",
+    "status": "PUBLISH",
+    "departement": "Groceries",
+    "dCode": "GC"
+},
+{
+    "_id": "53c2ae8528d75d572c06ada0",
+    "title": "Sugar FC",
+    "pcode": "1935182218",
+    "publishedDate":  "2010-08-15T00:00:00.000-0700",
+    "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/etzion.jpg",
+    "longDescription": "Sugar Cubes from SD",
+    "status": "PUBLISH",
+    "departement": "Groceries",
+    "dCode": "GC"
+}
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "status": "Created"
+    },
+    {
+        "status": "Under Review"
+    },
+    {
+        "status": "Rejected"
+    },
+    {
+        "status": "Purchase Confirmed"
+    },
+    {
+        "status": "Purchase Completed"
+    }
+]

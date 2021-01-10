@@ -1,0 +1,58 @@
+<%- include('../layouts/header') %>
+      <title>Create Promotions</title>
+      <br>
+      <h4>Create Promotions</h4>
+      <hr>
+      <form action="/pm" method="post">
+        <div class="form-group">
+          <label for="upc">Description - Product Code</label>
+
+          <input type="text" class="form-control" name="upc" id="name" required disabled>
+        </div>
+        <div class="form-group">
+          <label for="name">Title of promotion</label>
+          <input type="text" class="form-control" name="name" id="name" required disabled>
+        </div>
+        <div class="form-group">
+          <label for="name">Description</label>
+          <input type="text" class="form-control"  name="description" id="description" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+          <label for="cost">Cost Offer</label>
+          <input type="number" class="form-control"  name="costPrice" id="cost" required>
+          </div>
+          <div class="form-group col-md-2">
+          <label for="sellingPrice">Selling Offer</label>
+          <input type="number" class="form-control"  name="sellingPrice" id="sellingPrice" required>
+          </div>
+          <div class="form-group col-md-3">
+          <label for="marginLost">Margin Lost</label>
+          <input type="number" class="form-control"  name="marginLost" id="marginLost" required>
+            </div>
+          <div class="form-group col-md-3">
+          <label for="marginLost">Share%</label>
+          <input type="number" class="form-control"  name="share" id="share" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="marginLost">Supplier Share%</label>
+            <input type="number" class="form-control"  name="supplierShare" id="supplierShare" required>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <textarea class="form-control" name="comment" id="" cols="10" rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="upc">Promotion Status</label>
+          <select class="form-control" name="status" id="status">
+            <% promotionStatus.forEach(function(r){ %>
+              <option value="<%=r%>"><%=r%></option>
+              <% }) %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Promotions</button>
+        <small><a href="/support">Product not avalible?</a></small>
+      </form>
+    </ul>
+    <%- include('../layouts/footer') %>

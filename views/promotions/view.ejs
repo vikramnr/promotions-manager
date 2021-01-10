@@ -1,0 +1,47 @@
+<%- include('../layouts/header') %>
+<title>Viewing Promotions</title>
+<div class="row">
+    <div class="col-12">
+        <%promotions.forEach(function(promo){%>
+            <div class="media">
+                <img src="/images/back.jpg" class="mr-3" alt="..." height="160" width="150">
+                <div class="media-body">
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1"><%=promo.name%> <button type="button" class="btn btn-info btn-sm"><small><%=promo.product.status%></small></button></h5>
+                      <small><%=promo.createdAtStr%></small>
+                    </div>
+                    <p class="mb-1">
+                        <%=promo.description%>
+                    </p>
+                    <p>
+                      <table class="table table-sm table-light">
+                        <thead>
+                          <tr>
+                            <th scope="col">Cost Price($)</th>
+                            <th scope="col">Selling Price($)</th>
+                            <th scope="col">Share %</th>
+                            <th scope="col">Supplier Share %</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%=promo.costPrice%></td>
+                            <td><%=promo.sellingPrice%></td>
+                            <td><%=promo.supplierShare%></td>
+                            <td><%=promo.share%></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </p>
+                    <a  href="/pm/view/<%=promo._id%>" class="btn btn-secondary btn-md">Edit Promotion</a>
+                  </a>
+                </div>
+              </div>
+              <hr>
+        <%})%>
+</div>
+</div>
+
+
+<%- include('../layouts/footer') %>
