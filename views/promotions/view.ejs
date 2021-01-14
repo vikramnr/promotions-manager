@@ -1,12 +1,14 @@
 <%- include('../layouts/header') %>
 <title>Viewing Promotions</title>
+<h4>View Promotions</h4>
+   <hr>
 <div class="row">
     <div class="col-12">
         <%promotions.forEach(function(promo){%>
             <div class="media">
                 <img src="/images/back.jpg" class="mr-3" alt="..." height="160" width="150">
                 <div class="media-body">
-                  <a href="#" class="list-group-item list-group-item-action">
+                  <a href="/pm/view/<%=promo._id%>" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%=promo.name%> <button type="button" class="btn btn-info btn-sm"><small><%=promo.product.status%></small></button></h5>
                       <small><%=promo.createdAtStr%></small>
@@ -34,7 +36,6 @@
                         </tbody>
                       </table>
                     </p>
-                    <a  href="/pm/view/<%=promo._id%>" class="btn btn-secondary btn-md">Edit Promotion</a>
                   </a>
                 </div>
               </div>

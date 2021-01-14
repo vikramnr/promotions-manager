@@ -29,7 +29,7 @@ router.get('/view',async(req,res,next) => {
 
 router.get('/view/:id',async(req,res,next) => {
   
-  let promotion =  await Promotion.findById({_id: req.params.id}).populate('product').exec()
+  let promotion =  await Promotion.findOne({_id: req.params.id}).populate('product').exec()
   let status = await PromotionStatus.find({})
   console.log(status)
   let date = DateTime.fromJSDate(promotion.createdAt)

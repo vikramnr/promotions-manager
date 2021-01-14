@@ -1,53 +1,53 @@
 <%- include('../layouts/header') %>
-      <title>Create Promotions</title>
+      <title>Update Promotion</title>
       <br>
-      <h4>Create Promotions</h4>
+      <h4>Update Promotion</h4>
       <hr>
       <form action="/pm" method="post">
         <div class="form-group">
           <label for="upc">Description - Product Code</label>
 
-          <input type="text" class="form-control" name="upc" id="name" required disabled>
+          <input type="text" class="form-control" name="upc" id="name" value="<%=promotion.product.pcode%>" required disabled>
         </div>
         <div class="form-group">
           <label for="name">Title of promotion</label>
-          <input type="text" class="form-control" name="name" id="name" required disabled>
+          <input type="text" class="form-control" name="name" id="name" value="<%=promotion.name%>"  required disabled>
         </div>
         <div class="form-group">
           <label for="name">Description</label>
-          <input type="text" class="form-control"  name="description" id="description" required>
+          <input type="text" class="form-control"  name="description" id="description" value="<%=promotion.description%>"  required>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
           <label for="cost">Cost Offer</label>
-          <input type="number" class="form-control"  name="costPrice" id="cost" required>
+          <input type="number" class="form-control"  name="costPrice" id="cost" value="<%=promotion.costPrice%>"  required>
           </div>
           <div class="form-group col-md-2">
           <label for="sellingPrice">Selling Offer</label>
-          <input type="number" class="form-control"  name="sellingPrice" id="sellingPrice" required>
+          <input type="number" class="form-control"  name="sellingPrice" id="sellingPrice" value="<%=promotion.sellingPrice%>"  required>
           </div>
           <div class="form-group col-md-3">
           <label for="marginLost">Margin Lost</label>
-          <input type="number" class="form-control"  name="marginLost" id="marginLost" required>
+          <input type="number" class="form-control"  name="marginLost" id="marginLost" value="<%=promotion.marginLost%>" required>
             </div>
           <div class="form-group col-md-3">
           <label for="marginLost">Share%</label>
-          <input type="number" class="form-control"  name="share" id="share" required>
+          <input type="number" class="form-control"  name="share" id="share"  value="<%=promotion.share%>" required>
           </div>
           <div class="form-group col-md-2">
             <label for="marginLost">Supplier Share%</label>
-            <input type="number" class="form-control"  name="supplierShare" id="supplierShare" required>
+            <input type="number" class="form-control"  name="supplierShare" id="supplierShare" value="<%=promotion.supplierShare%>"  required>
             </div>
         </div>
         <div class="form-group">
           <label for="comments">Comments</label>
-          <textarea class="form-control" name="comment" id="" cols="10" rows="2" required></textarea>
+          <textarea class="form-control" name="comment" id="" cols="10" rows="2" value="<%=promotion.comments%>" required></textarea>
         </div>
         <div class="form-group">
           <label for="upc">Promotion Status</label>
           <select class="form-control" name="status" id="status">
             <% promotionStatus.forEach(function(r){ %>
-              <option value="<%=r%>"><%=r%></option>
+              <option value="<%=r._id%>"><%=r.status%></option>
               <% }) %>
           </select>
         </div>
