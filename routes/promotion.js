@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Promotion = require('../models/promo')
+const User = require('../models/user')
+const Comment = require('../models/comment')
 const ReferenceData = require('../models/reference')
 const PromotionStatus = require('../models/promostatus')
 const _ = require('lodash');
@@ -8,14 +10,13 @@ const { DateTime } = require('luxon');
 
 
 
-/* GET home page. */
 router.get('/',  async (req,res,next) => {
   res.render('promotions/index',{ title: 'Promotion Management Systems'})
 })
 
 
 router.get('/view',async(req,res,next) => {
-  let promotions =  await Promotion.find({}).populate('product').exec()
+  let promotions =  await Promotion.find({}).populate('product').populate('comments').exec()
   let updatedPromotions = []
   promotions.forEach(p => {
     let date = DateTime.fromJSDate(p.createdAt)
@@ -23,15 +24,14 @@ router.get('/view',async(req,res,next) => {
     promo.createdAtStr= date.toRelativeCalendar()
     updatedPromotions.push(promo)
   })
-  //console.log(updatedPromotions)
   res.render('promotions/view',{ title: 'Promotion Management Systems', promotions: updatedPromotions})
 })
 
 router.get('/view/:id',async(req,res,next) => {
   
-  let promotion =  await Promotion.findOne({_id: req.params.id}).populate('product').exec()
+  let promotion =  await Promotion.findOne({_id: req.params.id}).populate('product').populate('comments').exec()
+  console.log(promotion)
   let status = await PromotionStatus.find({})
-  // console.log(status)
   let date = DateTime.fromJSDate(promotion.createdAt)
   let updatedPromotion = _.cloneDeep(promotion);
   updatedPromotion.createdAtStr= date.toRelativeCalendar()
@@ -41,7 +41,6 @@ router.get('/view/:id',async(req,res,next) => {
 
 router.get('/create', async (req, res, next) => {
   const referenceData = await ReferenceData.find({})
-  // const promotionStatus = await PromotionStatus.find({})
   const promotions = await Promotion.find({}).populate('product').exec()
   
   let pcodeDisplay = []
@@ -60,13 +59,16 @@ router.get('/create', async (req, res, next) => {
 });
 
 router.post('/', async(req, res, next) => {
-  console.log(req.body.upc[0])
+  
+  let createdComment = new Comment({author: res.locals.currentUser._id,text : req.body.comment})
+  createdComment = await createdComment.save()
+  
   const promoObj = {
     name : req.body.name,
     description: req.body.description,
-    comments : [req.body.comment],
     product: req.body.upc[0],
-    status: req.body.status,
+    comments : [createdComment._id],
+    status: 'Created',
     costPrice: req.body.costPrice,
     sellingPrice: req.body.sellingPrice,
     marginLost: req.body.marginLost,
@@ -74,6 +76,7 @@ router.post('/', async(req, res, next) => {
     supplierShare: req.body.supplierShare,
     endDate : Date.now(),
   }
+  
   const newPromtion = new Promotion(promoObj)
   await newPromtion.save()
   res.redirect('/pm')
@@ -82,9 +85,12 @@ router.post('/', async(req, res, next) => {
 
 router.put('/:id',async(req,res,next) => {
   console.log(req.body.status)
+  let createdComment = new Comment({author: res.locals.currentUser._id,text : req.body.comment})
+  createdComment = await createdComment.save()
+  
   const promo = await Promotion.findById({_id: req.params.id})
   promo.description= req.body.description,
-  promo.comments = promo.comments.concat(req.body.comment)
+  promo.comments = promo.comments.concat(createdComment)
   promo.status =req.body.status
   promo.costPrice=  req.body.costPrice
   promo.sellingPrice= req.body.sellingPrice

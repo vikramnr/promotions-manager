@@ -1,58 +1,143 @@
 <%- include('../layouts/header') %>
-      <title>Update Promotion</title>
-      <br>
-      <h4 class="text-primary">Update Promotion | <a href="/pm/view">Go Back</a></h4>
-      <hr>
+  <title>Update Promotion</title>
+  <style>
+    .widget .panel-body {
+      padding: 0px;
+    }
+
+    .widget .list-group {
+      margin-bottom: 0;
+    }
+
+    .widget .panel-title {
+      display: inline
+    }
+
+    .widget .label-info {
+      float: right;
+    }
+
+    .widget li.list-group-item {
+      border-radius: 0;
+      border: 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .widget li.list-group-item:hover {
+      background-color: rgba(86, 61, 124, .1);
+    }
+
+    .widget .mic-info {
+      color: #666666;
+      font-size: 11px;
+    }
+
+    .widget .action {
+      margin-top: 5px;
+    }
+
+    .widget .comment-text {
+      font-size: 12px;
+    }
+
+    .widget .btn-block {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
+  </style>
+  <br>
+  <div class="row">
+    <div class="col-md-9">
       <form action="/pm/<%=promotion._id%>?_method=PUT" method="post">
+        <h3>Update Promotion</h3>
         <div class="form-group">
           <label for="upc">Description - Product Code</label>
 
-          <input type="text" class="form-control" name="upc" id="name" value="<%=promotion.product.pcode%>" required disabled>
+          <input type="text" class="form-control" name="upc" id="name" value="<%=promotion.product.pcode%>" required
+            disabled>
         </div>
         <div class="form-group">
           <label for="name">Title of promotion</label>
-          <input type="text" class="form-control" name="name" id="name" value="<%=promotion.name%>"  required disabled>
+          <input type="text" class="form-control" name="name" id="name" value="<%=promotion.name%>" required disabled>
         </div>
         <div class="form-group">
           <label for="name">Description</label>
-          <input type="text" class="form-control"  name="description" id="description" value="<%=promotion.description%>"  required>
+          <input type="text" class="form-control" name="description" id="description" value="<%=promotion.description%>"
+            required>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
-          <label for="cost">Cost Offer</label>
-          <input type="number" class="form-control"  name="costPrice" id="cost" value="<%=promotion.costPrice%>"  required>
+            <label for="cost">Cost Offer</label>
+            <input type="number" class="form-control" name="costPrice" id="cost" value="<%=promotion.costPrice%>"
+              required>
           </div>
           <div class="form-group col-md-2">
-          <label for="sellingPrice">Selling Offer</label>
-          <input type="number" class="form-control"  name="sellingPrice" id="sellingPrice" value="<%=promotion.sellingPrice%>"  required>
+            <label for="sellingPrice">Selling Offer</label>
+            <input type="number" class="form-control" name="sellingPrice" id="sellingPrice"
+              value="<%=promotion.sellingPrice%>" required>
           </div>
           <div class="form-group col-md-3">
-          <label for="marginLost">Margin Lost</label>
-          <input type="number" class="form-control"  name="marginLost" id="marginLost" value="<%=promotion.marginLost%>" required>
-            </div>
+            <label for="marginLost">Margin Lost</label>
+            <input type="number" class="form-control" name="marginLost" id="marginLost"
+              value="<%=promotion.marginLost%>" required>
+          </div>
           <div class="form-group col-md-3">
-          <label for="marginLost">Share%</label>
-          <input type="number" class="form-control"  name="share" id="share"  value="<%=promotion.share%>" required>
+            <label for="marginLost">Share%</label>
+            <input type="number" class="form-control" name="share" id="share" value="<%=promotion.share%>" required>
           </div>
           <div class="form-group col-md-2">
             <label for="marginLost">Supplier Share%</label>
-            <input type="number" class="form-control"  name="supplierShare" id="supplierShare" value="<%=promotion.supplierShare%>"  required>
-            </div>
+            <input type="number" class="form-control" name="supplierShare" id="supplierShare"
+              value="<%=promotion.supplierShare%>" required>
+          </div>
         </div>
         <div class="form-group">
           <label for="comments">Comments</label>
-          <textarea class="form-control" name="comment" id="" cols="10" rows="2" value="<%=promotion.comments%>" required></textarea>
+          <textarea class="form-control" name="comment" id="" cols="10" rows="2" value="<%=promotion.comments%>"
+            required></textarea>
         </div>
         <div class="form-group">
-          <label for="upc">Promotion Status</label> (<span>Previous Status - <small class="text-primary"><%=promotion.status%></small></span>)
+          <label for="upc">Promotion Status</label> (<span>Previous Status - <small class="text-primary">
+              <%=promotion.status%>
+            </small></span>)
           <select class="form-control" name="status" id="status">
             <% promotionStatus.forEach(function(r){ %>
-              <option value="<%=r.status%>"><%=r.status%></option>
+              <option value="<%=r.status%>">
+                <%=r.status%>
+              </option>
               <% }) %>
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Update Promotions</button>
         <small><a href="/support">Product not avalible?</a></small>
       </form>
-    </ul>
-    <%- include('../layouts/footer') %>
+    </div>
+    <div class="panel panel-default widget col-md-3">
+      <div class="panel-heading">
+        <span class="glyphicon glyphicon-comment"></span>
+        <h3>
+          Recent Comments</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <% promotion.comments.forEach(function(r){ %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-xs-10 col-md-12">
+                <div>
+                  <%=r.text%>
+                  <div class="mic-info">
+                    By: <a href="#">Bhaumik Patel</a> on 2 Aug 2013
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <%- include('../layouts/footer') %>

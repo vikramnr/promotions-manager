@@ -10,7 +10,10 @@ var promotionSchema = new mongoose.Schema({
         },
         username: String
     },
-    comments: [],
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment"
+    }],
     createdAt: { type: Date, default: Date.now },
     endDate: {type: Date },
     costPrice: Number,
