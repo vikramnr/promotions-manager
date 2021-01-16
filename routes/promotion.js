@@ -31,7 +31,7 @@ router.get('/view/:id',async(req,res,next) => {
   
   let promotion =  await Promotion.findOne({_id: req.params.id}).populate('product').exec()
   let status = await PromotionStatus.find({})
-  console.log(status)
+  // console.log(status)
   let date = DateTime.fromJSDate(promotion.createdAt)
   let updatedPromotion = _.cloneDeep(promotion);
   updatedPromotion.createdAtStr= date.toRelativeCalendar()
@@ -77,6 +77,29 @@ router.post('/', async(req, res, next) => {
   const newPromtion = new Promotion(promoObj)
   await newPromtion.save()
   res.redirect('/pm')
+})
+
+
+router.put('/:id',async(req,res,next) => {
+  console.log(req.body.status)
+  const promo = await Promotion.findById({_id: req.params.id})
+  promo.description= req.body.description,
+  promo.comments = promo.comments.concat(req.body.comment)
+  promo.status =req.body.status
+  promo.costPrice=  req.body.costPrice
+  promo.sellingPrice= req.body.sellingPrice
+  promo.marginLost= req.body.marginLost
+  promo.share= req.body.share
+  promo.supplierShare = req.body.supplierShare
+  await promo.save()
+  console.log(promo,'updated one')
+  res.redirect('/pm/view/'+req.params.id)
+})
+
+router.delete('/:id',async(req,res,next) => {
+  const result = await Promotion.findByIdAndDelete(req.params.id)
+  console.log(result)
+  res.redirect('/pm/view')
 })
 
 module.exports = router;

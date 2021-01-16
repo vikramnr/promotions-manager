@@ -19,8 +19,8 @@ UserGroup.insertMany(userData).then((c) =>{
 Reference.insertMany(refData).then((c) =>{
     console.log(c)
 })
-PromotionStatus.deleteMany({}).then((c) => console.log('deleted promo data')) 
+// PromotionStatus.deleteMany({}).then((c) => console.log('deleted promo data')) 
 console.log(pStatus)
-PromotionStatus.insertMany(pStatus).then((c) => console.log(c))
+// PromotionStatus.insertMany(pStatus).then((c) => console.log(c))
 
 // Promotion.deleteMany({}).then((c) => console.log('deleted promotions '))

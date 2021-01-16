@@ -6,6 +6,7 @@ const passport = require('passport')
 const passportLocal = require('passport-local')
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
+const methodOverride = require('method-override')
 
 const User = require('./models/user')
 const indexRouter = require('./routes/index');
@@ -36,7 +37,7 @@ app.use(expressSession);
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(methodOverride('_method'))
 passport.use(new passportLocal(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());

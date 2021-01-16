@@ -15,6 +15,9 @@
                     </div>
                     <p class="mb-1">
                         <%=promo.description%>
+                        <form action="/pm/<%=promo._id%>?_method=DELETE" method="post" style="display: inline;">
+                          <button type="submit" class="btn btn-sm btn-danger">Delete promotion</button>
+                        </form>
                     </p>
                     <p>
                       <table class="table table-sm table-light">
