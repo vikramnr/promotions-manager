@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -15,9 +16,9 @@ const promoRouter = require('./routes/promotion')
 const app = express();
 
 // db connection to local instance
-mongoose.connect('mongodb://localhost:27017/promomanager').then(() => console.log('connected successfully')).catch((err) => console.log(err))
+mongoose.connect(process.env.MONGODB_URL).then(() => console.log('connected successfully')).catch((err) => console.log(err))
 // require seed model and 
-const seed = require('./seed')
+// const seed = require('./seed')
 
 
 // view engine setup
